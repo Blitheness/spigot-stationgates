@@ -1,0 +1,7 @@
+##############################
+# StationGates Configuration #
+##############################
+tool: GOLDEN_HOE
+apiEnabled: false
+apiEndpoint: ''
+apiKey: ''
