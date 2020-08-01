@@ -1,0 +1,11 @@
+name: StationGates
+main: uk.pover.stationgates.StationGates
+version: 0.5.0-SNAPSHOT
+api-version: 1.15
+author: CoffeeAndChill
+commands:
+  sg:
+    description: Manage station ticket gates or validators.
+    usage: /sg add/remove/cancel/mode/resolve
+    permission: stationgates.sg
+    permission-message: You aren't allowed to use that command
