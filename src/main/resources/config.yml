@@ -1,7 +1,8 @@
 ##############################
-# StationGates Configuration #
+# ${project.artifactId} Configuration #
 ##############################
 tool: GOLDEN_HOE
+displayWelcome: true
 apiEnabled: false
 apiEndpoint: ''
 apiKey: ''
