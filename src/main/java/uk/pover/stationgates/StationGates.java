@@ -21,6 +21,9 @@ public class StationGates extends JavaPlugin {
             logInfo("welcome");
         }
 
+        // Web API helper
+        _api = new WebApi(this);
+
         // Plugin Metrics
         try {
             Metrics metrics = new Metrics(this);
@@ -60,4 +63,5 @@ public class StationGates extends JavaPlugin {
     }
 
     protected ResourceBundle _messages;
+    protected WebApi _api;
 }
