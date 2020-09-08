@@ -10,10 +10,15 @@
     <developers>
         <developer>
             <name>CoffeeAndChill</name>
-            <email>dev@oneiric.co.uk</email>
+            <email>dev@shirecraft.us</email>
+            <organizationUrl>https://shirecraft.us</organizationUrl>
         </developer>
     </developers>
     <url>https://github.com/Blitheness/spigot-stationgates</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <repositories>
         <repository>
@@ -21,8 +26,8 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>Plugin Metrics</id>
-            <url>https://maven.enginehub.org/repo/</url>
+            <id>CodeMC</id>
+            <url>https://repo.codemc.org/repository/maven-public</url>
         </repository>
     </repositories>
 
@@ -44,6 +49,18 @@
             <version>R8-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>1.7</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -58,14 +75,9 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.1</version>
                 <configuration>
-                    <artifactSet>
-                        <includes>
-                            <include>org.mcstats.*:*</include>
-                        </includes>
-                    </artifactSet>
                     <relocations>
                         <relocation>
-                            <pattern>org.mcstats</pattern>
+                            <pattern>org.bstats</pattern>
                             <shadedPattern>uk.pover.stationgates</shadedPattern>
                         </relocation>
                     </relocations>
@@ -78,6 +90,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
         <resources>

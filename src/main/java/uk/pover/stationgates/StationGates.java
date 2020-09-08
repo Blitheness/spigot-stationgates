@@ -1,9 +1,8 @@
 package uk.pover.stationgates;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
+import org.bstats.bukkit.Metrics;
 
-import java.io.IOException;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -25,12 +24,8 @@ public class StationGates extends JavaPlugin {
         _api = new WebApi(this);
 
         // Plugin Metrics
-        try {
-            Metrics metrics = new Metrics(this);
-            metrics.start();
-        } catch (IOException e) {
-            logWarning("metricsError");
-        }
+        int bstatsPluginId = 8786;
+        new Metrics(this, bstatsPluginId);
     }
 
     @Override
