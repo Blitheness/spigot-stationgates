@@ -20,17 +20,26 @@ public class StationGates extends JavaPlugin {
             logInfo("welcome");
         }
 
-        // Web API helper
-        _api = new WebApi(this);
+        // API connection
+        if(getConfig().getBoolean("apiEnabled")) {
+            _api = new WebApi(this);
+        }
+        else {
+            logInfo("apiNotEnabled");
+        }
 
         // Plugin Metrics
-        int bstatsPluginId = 8786;
-        new Metrics(this, bstatsPluginId);
+        try {
+            new Metrics(this, BSTATS_PLUGIN_ID);
+        }
+        catch(Exception e) {
+            logWarning("metricsError");
+        }
     }
 
     @Override
     public void onDisable() {
-
+        logInfo("disableMessage");
     }
 
     public ResourceBundle getMessages() {
@@ -38,25 +47,34 @@ public class StationGates extends JavaPlugin {
     }
 
     public void logInfo(String messageKey) {
-        String message;
-        try {
-            message = getMessages().getString(messageKey);
-        } catch(MissingResourceException ex) {
-            return;
-        }
-        getLogger().info(message);
+        log(messageKey, false);
     }
 
     public void logWarning(String messageKey) {
+        log(messageKey, true);
+    }
+
+    public void log(String messageKey, boolean warning) {
         String message;
         try {
             message = getMessages().getString(messageKey);
         } catch(MissingResourceException ex) {
-            return;
+            message = messageKey;
         }
-        getLogger().warning(message);
+        if(warning) {
+            getLogger().warning(message);
+        }
+        else {
+            getLogger().info(message);
+        }
+    }
+
+    public boolean isApiEnabled() {
+        return _api != null;
     }
 
     protected ResourceBundle _messages;
     protected WebApi _api;
+
+    private final int BSTATS_PLUGIN_ID = 8786;
 }
